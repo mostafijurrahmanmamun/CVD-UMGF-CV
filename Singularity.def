@@ -1,0 +1,22 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+
+%labels
+    Maintainer Cardiovascular AI Engineering Group
+    Version v1.0.0
+    Description UMGF-CVD Singularity/Apptainer Container Recipe for HPC Environments
+
+%environment
+    export LC_ALL=C
+    export PYTHONUNBUFFERED=1
+
+%post
+    apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        wget \
+        && rm -rf /var/lib/apt/lists/*
+    pip install --no-cache-dir torch>=2.0.0 numpy>=1.22.0 scikit-learn>=1.0.0 scipy>=1.8.0 pandas matplotlib tqdm
+
+%runscript
+    exec python /workspace/code/train.py "$@"

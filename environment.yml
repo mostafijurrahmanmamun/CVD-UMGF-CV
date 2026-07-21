@@ -1,0 +1,19 @@
+name: umgf_cvd
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch>=2.0.0
+  - pytorch-cuda=12.1
+  - numpy>=1.22.0
+  - scikit-learn>=1.0.0
+  - scipy>=1.8.0
+  - pandas>=1.4.0
+  - matplotlib>=3.5.0
+  - tqdm>=4.64.0
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu121
